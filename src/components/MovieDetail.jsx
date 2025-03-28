@@ -5,7 +5,12 @@ const MovieDetail = ({ movieId, onBack }) => {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    fetchMovies(movieId).then(setMovie);
+    const getMovie = async () => {
+      const movieData = await fetchMovies(movieId, true); // Fetch by ID
+      setMovie(movieData);
+    };
+
+    getMovie();
   }, [movieId]);
 
   if (!movie) return <p>Loading...</p>;
@@ -20,9 +25,11 @@ const MovieDetail = ({ movieId, onBack }) => {
         src={movie.Poster}
         alt={movie.Title}
       />
-      <p>{movie.Plot}</p>
       <p>
-        <strong>Actors:</strong> {movie.Actors}
+        <strong>Plot:</strong> {movie.Plot || "No plot available"}
+      </p>
+      <p>
+        <strong>Actors:</strong> {movie.Actors || "No actors available"}
       </p>
     </div>
   );

@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <form
-      className="search-bar"
+      className="search-container"
       onSubmit={handleSubmit}
     >
       <input
@@ -20,8 +20,14 @@ const SearchBar = ({ onSearch }) => {
         value={term}
         onChange={(e) => setTerm(e.target.value)}
         placeholder="Search for a movie..."
+        className="search-input"
       />
-      <button type="submit">Search</button>
+      <button
+        type="submit"
+        className="search-button"
+      >
+        Search
+      </button>
     </form>
   );
 };
